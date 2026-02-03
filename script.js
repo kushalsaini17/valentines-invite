@@ -1,3 +1,35 @@
+// Check if device is laptop/desktop
+function checkDevice() {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isTablet = /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(navigator.userAgent);
+    
+    if (isMobile || isTablet || window.innerWidth < 1024) {
+        document.body.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: center; height: 100vh; 
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                        font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center;">
+                <div style="background: white; padding: 40px; border-radius: 20px; 
+                            box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-width: 500px;">
+                    <h1 style="color: #e74c3c; font-size: 32px; margin-bottom: 20px;">💻 Laptop Only! 💻</h1>
+                    <p style="color: #333; font-size: 18px; line-height: 1.6;">
+                        This special invitation can only be opened on a laptop or desktop computer.
+                    </p>
+                    <p style="color: #e74c3c; font-size: 16px; margin-top: 20px;">
+                        Please open this on your laptop! 💕
+                    </p>
+                </div>
+            </div>
+        `;
+        return false;
+    }
+    return true;
+}
+
+// Check device on page load
+if (!checkDevice()) {
+    throw new Error('Mobile device detected');
+}
+
 // Login functionality
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
