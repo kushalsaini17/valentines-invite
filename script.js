@@ -31,6 +31,8 @@ if (!checkDevice()) {
 }
 
 // Login functionality
+let failedAttempts = 0;
+
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -39,19 +41,72 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     
     // Check if password matches (case-insensitive)
     if (password.toLowerCase() === 'kushalawadhsaini') {
-        // Hide login page and show landing page
+        // Reset failed attempts and hide login page
+        failedAttempts = 0;
         document.getElementById('loginPage').classList.remove('active');
         document.getElementById('landingPage').classList.add('active');
     } else {
+        // Increment failed attempts
+        failedAttempts++;
+        
         // Shake the form to indicate wrong password
         const loginBox = document.querySelector('.login-box');
         loginBox.style.animation = 'shake 0.5s';
         setTimeout(() => {
             loginBox.style.animation = '';
         }, 500);
-        alert('Wrong password! Try again 💕');
+        
+        // Show error message
+        showErrorMessage();
+        
+        // Check if 3 consecutive failures
+        if (failedAttempts >= 3) {
+            showTeaseModal();
+            failedAttempts = 0; // Reset counter after showing modal
+        }
     }
 });
+
+// Show error message below password field
+function showErrorMessage() {
+    // Remove existing error message if any
+    const existingError = document.querySelector('.error-message');
+    if (existingError) {
+        existingError.remove();
+    }
+    
+    // Create new error message
+    const errorMsg = document.createElement('div');
+    errorMsg.className = 'error-message';
+    errorMsg.textContent = '❌ Wrong password! Try again 💕';
+    
+    const passwordGroup = document.getElementById('password').closest('.form-group');
+    passwordGroup.appendChild(errorMsg);
+    
+    // Auto-remove after 3 seconds
+    setTimeout(() => {
+        errorMsg.remove();
+    }, 3000);
+}
+
+// Show tease modal after 3 failed attempts
+function showTeaseModal() {
+    const modal = document.createElement('div');
+    modal.className = 'tease-modal-overlay';
+    modal.innerHTML = `
+        <div class="tease-modal">
+            <h2>😄 Waah bete Waah! 😄</h2>
+            <p>Apne hone wale shohar ka naam bhi nahi pata tumhe.</p>
+            <button class="btn-close-modal">Theek Hai, Sorry! 🙈</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Close modal on button click
+    modal.querySelector('.btn-close-modal').addEventListener('click', function() {
+        modal.remove();
+    });
+}
 
 // Add shake animation
 const style = document.createElement('style');

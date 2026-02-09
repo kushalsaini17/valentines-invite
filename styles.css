@@ -153,9 +153,29 @@ body {
 
 .hint {
     display: block;
-    margin-top: 5px;
+    margin-top: 8px;
     color: #e74c3c;
     font-size: 14px;
+}
+
+.error-message {
+    display: block;
+    margin-top: 10px;
+    color: #e74c3c;
+    font-size: 14px;
+    font-weight: 600;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .btn-login {
@@ -263,6 +283,8 @@ body {
     box-shadow: 0 8px 20px rgba(244, 67, 54, 0.4);
     position: absolute;
     transition: all 0.2s ease;
+    font-size: 12px;
+    padding: 8px 16px;
 }
 
 /* Celebration Styles */
@@ -383,4 +405,86 @@ body {
     height: auto;
     margin-bottom: 20px;
     border-radius: 15px;
+}
+
+/* Tease Modal Styles */
+.tease-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.tease-modal {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 500px;
+    animation: bounceIn 0.5s ease-out;
+}
+
+.tease-modal h2 {
+    color: #e74c3c;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.tease-modal p {
+    color: #333;
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.btn-close-modal {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-close-modal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
