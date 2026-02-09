@@ -186,9 +186,10 @@ function showSuccessMessage() {
     const message = document.createElement('div');
     message.className = 'success-message';
     message.innerHTML = `
+        <img src="bears.gif" alt="Love Bears" class="celebration-gif">
         <h1>💖 Yay! 💖</h1>
         <p>I knew you'd say yes!</p>
-        <p>Happy Valentine's Day, Akriti! 💕</p>
+        <p>Happy Valentine's Week, Babe! 💕</p>
     `;
     document.body.appendChild(message);
 }
