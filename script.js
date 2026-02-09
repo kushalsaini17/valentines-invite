@@ -188,7 +188,7 @@ function showSuccessMessage() {
     message.innerHTML = `
         <h1>💖 Yay! 💖</h1>
         <p>I knew you'd say yes!</p>
-        <p>Happy Valentine's Day, Akriti! 💕</p>
+        <p>Happy Valentine's Week, Babe! 💕</p>
     `;
     document.body.appendChild(message);
 }
